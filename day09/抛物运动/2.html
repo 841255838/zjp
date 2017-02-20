@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			#box {
+				width: 30px;
+				height: 30px;
+				background: red;
+				
+				/*border-radius 代表边框的幅度*/
+				/*border-radius: 50px;*/
+				border-radius: 50%;
+				
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			hr {
+				
+				position: absolute;
+				left: 0;
+				/*top: 172px;*/
+				top: 175px;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		
+		<hr />
+		
+		<script>
+		
+			var oBox = document.getElementById("box");
+			
+			var y = 0;
+			var ySpeed = 0;
+			
+			
+			// 往下走
+			var timer = setInterval(function() {
+				
+				// y轴的速度值越来越大
+				ySpeed = ySpeed + 1;
+				
+				y = y + ySpeed;
+	
+				oBox.style.top = y + "px";
+				
+				console.log(ySpeed);
+				// 到达地面
+				if (y > 150) {
+					// 速度反向
+					ySpeed = -1 * ySpeed;
+					
+					// 弥补下一次多加了1的情况
+					ySpeed--;
+					
+				}
+			}, 50);
+			
+		</script>
+	</body>
+</html>

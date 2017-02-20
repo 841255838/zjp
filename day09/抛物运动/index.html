@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			#box {
+				width: 30px;
+				height: 30px;
+				background: red;
+				
+				/*border-radius 代表边框的幅度*/
+				/*border-radius: 50px;*/
+				border-radius: 50%;
+				
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			hr {
+				
+				position: absolute;
+				left: 0;
+				top: 172px;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		
+		<hr />
+		
+		<script>
+		
+			var oBox = document.getElementById("box");
+			
+			var y = 0;
+			var ySpeed = 2;
+			
+			var ySpeedDeta = 2;
+			
+			// 往下走
+			var timer = setInterval(function() {
+				y = y + ySpeed;
+				
+				ySpeed = ySpeed + ySpeedDeta; // y轴的速度值越来越大
+				
+				oBox.style.top = y + "px";
+				
+				
+				// 如果到达顶部 或者 到达底部，
+				// 那么： 将球的运动方向 反向！
+				if (y < 0 || y >= 150) {
+					ySpeed = -1 * ySpeed;
+					ySpeedDeta = -1 * ySpeedDeta;
+				}
+			}, 10);
+			
+		</script>
+	</body>
+</html>

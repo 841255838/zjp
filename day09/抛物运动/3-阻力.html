@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			#box {
+				width: 30px;
+				height: 30px;
+				background: red;
+				
+				/*border-radius 代表边框的幅度*/
+				/*border-radius: 50px;*/
+				border-radius: 50%;
+				
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			hr {
+				
+				position: absolute;
+				left: 0;
+				/*top: 172px;*/
+				top: 175px;
+				width: 100%;
+				
+				transition: left 5s;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		
+		<hr />
+		
+		<script>
+		
+			var oBox = document.getElementById("box");
+			
+			var y = 0;
+			var x = 0;
+			
+			var ySpeed = 0;
+			
+			
+			// 往下走
+			var timer = setInterval(function() {
+				
+				// y轴的速度值越来越大
+				ySpeed = ySpeed + 1;
+				
+				y = y + ySpeed;
+				x = x + 3;
+	
+				oBox.style.top = y + "px";
+				oBox.style.left = x + "px";
+				
+				// 到达地面
+				if (y > 150) {
+					// 碰撞的能量损失
+					ySpeed = 0.8 * ySpeed;
+					// parseInt 代表取整，舍弃小数部分
+					ySpeed = parseInt(ySpeed);
+					
+					// 速度反向
+					ySpeed = -1 * ySpeed;
+					
+					// 弥补下一次多加了1的情况
+					ySpeed--;
+					
+					// Math.abs 代表取绝对值
+					if (Math.abs(ySpeed) <= 3) {
+						clearInterval(timer);
+						
+						var count = 0;
+						var speed = 6;
+						var t2 = setInterval(function() {
+							speed--;
+							if (speed <= 0) {
+								speed = 1;
+							}
+							x = x + speed;
+							oBox.style.left = x + "px";
+							
+							count++;
+							if (count >= 10) {
+								clearInterval(t2);
+							}
+						}, 50);
+						
+					}
+				}
+			}, 50);
+			
+		</script>
+	</body>
+</html>
